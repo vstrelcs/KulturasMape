@@ -22,7 +22,7 @@
 	ext: 'png'
 
     });
-    // watercolor.addTo(map)
+    Stamen_Toner.addTo(map)
 
     // dark map 
     var dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
