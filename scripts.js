@@ -1,5 +1,6 @@
-
-    // Map initialization 
+//novadkultura.lv !!!!!!!!!!!!
+   
+   // Map initialization 
     var map = L.map('map').setView([56.8796, 24.6032], 8);
 
   
@@ -30,44 +31,60 @@
     });
     // dark.addTo(map)
 
-    // google street 
-    googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 20,
-        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    });
-    // googleStreets.addTo(map);
-
-    //google satellite
-    googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-        maxZoom: 20,
-        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    });
-    // googleSat.addTo(map)
-
-    var wms = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
-        layers: 'geoapp:admin',
-        format: 'image/png',
-        transparent: true,
-        attribution: "wms test"
-    });
 
 
-
-    /*==============================================
-                        MARKER
-    ================================================*/
-    var myIcon = L.icon({
-        iconUrl: 'img/red_marker.png',
-        iconSize: [40, 40],
-    });
-    var singleMarker = L.marker([28.3949, 84.1240], { icon: myIcon, draggable: true });
-    var popup = singleMarker.bindPopup('This is the Nepal. ' + singleMarker.getLatLng()).openPopup()
-    popup.addTo(map);
-
-    var secondMarker = L.marker([29.3949, 83.1240], { icon: myIcon, draggable: true });
-
-    console.log(singleMarker.toGeoJSON())
-
+    var polygon1 = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    82.880859375,
+                    28.311635046750613
+                  ],
+                  [
+                    82.85064697265625,
+                    28.127705557287978
+                  ],
+                  [
+                    83.02642822265625,
+                    27.962869019359157
+                  ],
+                  [
+                    83.39996337890625,
+                    27.78320162016678
+                  ],
+                  [
+                    83.85589599609375,
+                    27.928900753321876
+                  ],
+                  [
+                    83.92730712890625,
+                    28.263263279931966
+                  ],
+                  [
+                    83.77899169921875,
+                    28.507315578441784
+                  ],
+                  [
+                    83.5125732421875,
+                    28.5941685062326
+                  ],
+                  [
+                    82.880859375,
+                    28.311635046750613
+                  ]
+                ]
+              ]
+            }
+          }
+        ]
+      }
 
     /*==============================================
                 GEOJSON
@@ -84,6 +101,21 @@
             color: '#c0c0c0',
         }
     }).addTo(map);
+
+
+
+    var polygon1 = turf.polygon([[
+        [128, -26],
+        [141, -26],
+        [141, -21],
+        [128, -21],
+        [128, -26]
+    ]], {
+        "fill": "#F00",
+        "fill-opacity": 0.1
+    });
+
+    var polyGeojson = L.geoJSON(polygon1).addTo(map)
 
 
 
@@ -122,7 +154,3 @@
         console.log('lat: ' + e.latlng.lat, 'lng: ' + e.latlng.lng)
     })
 
-
-    /*==============================================
-                    STYLE CUSTOMIZATION
-    ================================================*/
